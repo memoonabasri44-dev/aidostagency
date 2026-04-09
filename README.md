@@ -33,11 +33,24 @@ Our goal is to make technology simple, powerful, and accessible for everyone.
 
 ## 🛠️ Technologies Used
 
-- HTML, CSS, JavaScript  
-- AI Tools & APIs  
-- Git & GitHub  
 
----
+Technologies & Concepts Used:
+
+HTML5: Used for the semantic structure of the webpage.
+
+CSS3 (Custom Properties): Used for styling, including CSS variables (:root) for themes.
+
+Google Fonts API: Used to import the 'Plus Jakarta Sans' font family.
+
+Responsive Web Design (RWD): Using Media Queries (@media) to make the site work on mobile and desktop.
+
+Flexbox & CSS Grid: Layout techniques used for the navigation bar, cards, and footer sections.
+
+JavaScript (ES6): Used for interactivity like opening modals, toggling the mobile menu, and handling the FAQ accordion.
+
+CSS Transitions & Animations: Used for smooth hover effects and toast notifications.
+
+SVG (Scalable Vector Graphics): Used for background patterns and icons.
 
 ## 📸 Screenshots
 <img width="1360" height="605" alt="image" src="https://github.com/user-attachments/assets/12f21f6b-5530-4c25-b24f-3f9c26f8aa48" />
@@ -54,3 +67,9 @@ https://github.com/memoonabasri44-dev/aidostagency.git
 1. Clone the repository:
 ```bash
 git clone [https://github.com/memoonabasri44-dev/aidostagency.git]
+
+Open your project folder.
+
+Right-click on the index.html file.
+
+Select "Open with" and choose any web browser like Google Chrome, Microsoft Edge, or Firefox.
