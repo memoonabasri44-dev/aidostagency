@@ -47,10 +47,10 @@ Our goal is to make technology simple, powerful, and accessible for everyone.
 
 
 ## 🔗 Live Demo
-https://github.com/memoonabasri/ai-dost-agency.git
+https://github.com/memoonabasri44-dev/aidostagency.git
 
 ## 📂 Installation
 
 1. Clone the repository:
 ```bash
-git clone [https://github.com/memoonabasri/ai-dost-agency.git](https://github.com/your-username/ai-dost-agency.git)
+git clone [https://github.com/memoonabasri44-dev/aidostagency.git]
