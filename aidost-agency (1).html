@@ -1,0 +1,671 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AIDost Agency — AI Solutions That Drive Revenue</title>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --green:#1a7a5e;--green-dark:#0e5441;--green-light:#e8f5f0;--green-mid:#2da87e;
+  --text:#1a1a1a;--text2:#555;--text3:#888;--border:#e5e5e5;--bg:#fff;--bg2:#f8faf9;--bg3:#f2f7f5;
+  --radius:8px;--radius-lg:14px;--font:'Plus Jakarta Sans',sans-serif;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:var(--font);color:var(--text);background:var(--bg);font-size:15px;line-height:1.6}
+
+/* ─── NAV ─── */
+.topbar{background:var(--green-dark);color:#fff;text-align:center;font-size:12px;padding:6px;letter-spacing:.03em}
+.topbar a{color:#9fe8c8;text-decoration:none;font-weight:600}
+nav{background:#fff;border-bottom:1px solid var(--border);position:sticky;top:0;z-index:999;box-shadow:0 1px 6px rgba(0,0,0,.06)}
+.nav-inner{max-width:1200px;margin:0 auto;padding:0 1.5rem;height:64px;display:flex;align-items:center;justify-content:space-between;gap:1rem}
+.logo{font-size:22px;font-weight:700;text-decoration:none;color:var(--text);white-space:nowrap}
+.logo .ai{color:var(--green)}.logo .dost{color:var(--text)}.logo .ag{color:var(--text3);font-weight:500;font-size:13px}
+.nav-links{display:flex;gap:0;align-items:center}
+.nav-item{position:relative}
+.nav-item > a,.nav-item > button{background:none;border:none;font-family:var(--font);font-size:14px;color:var(--text2);padding:0 14px;height:64px;display:flex;align-items:center;gap:4px;cursor:pointer;text-decoration:none;white-space:nowrap;transition:color .2s}
+.nav-item > a:hover,.nav-item > button:hover{color:var(--green)}
+.nav-item > button .arrow{font-size:10px;transition:transform .2s;display:inline-block}
+.nav-item.open > button .arrow{transform:rotate(180deg)}
+.dropdown{display:none;position:absolute;top:64px;left:0;background:#fff;border:1px solid var(--border);border-radius:var(--radius-lg);box-shadow:0 8px 40px rgba(0,0,0,.12);min-width:220px;z-index:1000;padding:8px 0}
+.nav-item.open .dropdown{display:block}
+.dropdown a{display:block;padding:10px 20px;font-size:13px;color:var(--text2);text-decoration:none;transition:background .15s,color .15s}
+.dropdown a:hover{background:var(--green-light);color:var(--green)}
+.nav-actions{display:flex;gap:8px;align-items:center;flex-shrink:0}
+.btn{display:inline-flex;align-items:center;gap:6px;padding:9px 20px;border-radius:var(--radius);font-size:13px;font-weight:600;cursor:pointer;text-decoration:none;transition:all .2s;border:none;font-family:var(--font)}
+.btn-outline{background:#fff;color:var(--text);border:1.5px solid var(--border)}
+.btn-outline:hover{border-color:var(--green);color:var(--green)}
+.btn-green{background:var(--green);color:#fff}
+.btn-green:hover{background:var(--green-dark)}
+.btn-lg{padding:13px 30px;font-size:15px;border-radius:var(--radius-lg)}
+.btn-white{background:#fff;color:var(--green);font-weight:700}
+.btn-white:hover{background:#f0fdf7}
+.btn-ghost{background:transparent;color:#fff;border:2px solid rgba(255,255,255,.5)}
+.btn-ghost:hover{background:rgba(255,255,255,.1)}
+.hamburger{display:none;background:none;border:none;cursor:pointer;flex-direction:column;gap:5px;padding:6px}
+.hamburger span{width:22px;height:2px;background:var(--text);display:block;border-radius:2px;transition:all .3s}
+.mobile-nav{display:none;background:#fff;border-top:1px solid var(--border);padding:1rem}
+.mobile-nav a,.mobile-nav button{display:block;padding:10px 0;font-size:14px;color:var(--text2);text-decoration:none;background:none;border:none;font-family:var(--font);cursor:pointer;width:100%;text-align:left;border-bottom:1px solid var(--border)}
+.mobile-nav a:last-child,.mobile-nav button:last-child{border-bottom:none}
+
+/* ─── HERO ─── */
+.hero{background:linear-gradient(135deg,#052e1e 0%,#0e5441 45%,#1a7a5e 80%,#2da87e 100%);padding:80px 1.5rem 60px;text-align:center;color:#fff;position:relative;overflow:hidden}
+.hero::before{content:"";position:absolute;inset:0;background:url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")}
+.hero-inner{max-width:900px;margin:0 auto;position:relative}
+.hero-badge{display:inline-flex;align-items:center;gap:8px;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.25);color:#9fe8c8;font-size:12px;font-weight:600;padding:5px 16px;border-radius:20px;margin-bottom:28px;letter-spacing:.04em;text-transform:uppercase}
+.hero h1{font-size:clamp(28px,5vw,52px);font-weight:700;line-height:1.15;margin-bottom:20px;letter-spacing:-.02em}
+.hero p{font-size:17px;color:rgba(255,255,255,.82);max-width:620px;margin:0 auto 36px;line-height:1.75}
+.hero-btns{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-bottom:56px}
+.hero-stats{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:rgba(255,255,255,.12);border-radius:var(--radius-lg);overflow:hidden;border:1px solid rgba(255,255,255,.12)}
+.hero-stat{background:rgba(0,0,0,.15);padding:22px 16px;text-align:center}
+.hero-stat-num{font-size:clamp(20px,3vw,30px);font-weight:700;color:#fff}
+.hero-stat-lbl{font-size:12px;color:rgba(255,255,255,.65);margin-top:4px;line-height:1.4}
+
+/* ─── LOGOS STRIP ─── */
+.logos-strip{background:#fff;border-bottom:1px solid var(--border);padding:24px 1.5rem}
+.logos-inner{max-width:1100px;margin:0 auto;display:flex;align-items:center;gap:1rem;flex-wrap:wrap;justify-content:center}
+.logos-label{font-size:12px;color:var(--text3);font-weight:600;text-transform:uppercase;letter-spacing:.06em;margin-right:8px;white-space:nowrap}
+.logo-pill{background:var(--bg2);border:1px solid var(--border);border-radius:20px;padding:6px 18px;font-size:12px;font-weight:600;color:var(--text2)}
+
+/* ─── SECTIONS ─── */
+section{padding:72px 1.5rem}
+.section-inner{max-width:1100px;margin:0 auto}
+.section-tag{font-size:12px;font-weight:700;color:var(--green);text-transform:uppercase;letter-spacing:.08em;margin-bottom:12px}
+.section-title{font-size:clamp(24px,3.5vw,38px);font-weight:700;line-height:1.2;letter-spacing:-.02em;margin-bottom:16px}
+.section-sub{font-size:16px;color:var(--text2);line-height:1.75;max-width:620px;margin-bottom:40px}
+.bg2{background:var(--bg2)}
+.bg3{background:var(--bg3)}
+
+/* ─── BENEFIT CARDS ─── */
+.cards-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:20px}
+.card{background:#fff;border:1px solid var(--border);border-radius:var(--radius-lg);padding:28px;transition:box-shadow .25s,transform .25s}
+.card:hover{box-shadow:0 8px 32px rgba(26,122,94,.12);transform:translateY(-3px)}
+.card-icon{width:48px;height:48px;border-radius:12px;background:var(--green-light);display:flex;align-items:center;justify-content:center;font-size:22px;margin-bottom:18px}
+.card h3{font-size:16px;font-weight:700;margin-bottom:10px}
+.card p{font-size:14px;color:var(--text2);line-height:1.65}
+
+/* ─── TABS ─── */
+.tabs-wrap{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:32px}
+.tab{padding:8px 20px;border-radius:20px;font-size:13px;font-weight:600;cursor:pointer;border:1.5px solid var(--border);background:#fff;color:var(--text2);transition:all .2s;font-family:var(--font)}
+.tab:hover{border-color:var(--green);color:var(--green)}
+.tab.active{background:var(--green);color:#fff;border-color:var(--green)}
+.service-panel{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:start}
+.service-text h3{font-size:24px;font-weight:700;margin-bottom:14px;letter-spacing:-.01em}
+.service-text p{font-size:15px;color:var(--text2);line-height:1.75;margin-bottom:20px}
+.service-list{list-style:none;margin-bottom:28px}
+.service-list li{display:flex;align-items:flex-start;gap:10px;padding:9px 0;border-bottom:1px solid var(--border);font-size:14px;color:var(--text2)}
+.service-list li::before{content:"✓";background:var(--green-light);color:var(--green);width:20px;height:20px;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;flex-shrink:0;margin-top:1px}
+.service-visual{background:var(--bg2);border:1px solid var(--border);border-radius:var(--radius-lg);padding:28px;min-height:280px}
+.bar-row{display:flex;align-items:center;gap:10px;margin-bottom:10px}
+.bar-fill{height:10px;border-radius:5px;background:var(--green);transition:width .5s ease}
+.bar-label{font-size:12px;color:var(--text3);width:60px;flex-shrink:0}
+.bar-pct{font-size:12px;color:var(--text2);font-weight:600;width:36px;flex-shrink:0;text-align:right}
+.visual-title{font-size:13px;font-weight:600;color:var(--text2);margin-bottom:18px;display:flex;align-items:center;gap:8px}
+.green-dot{width:8px;height:8px;border-radius:50%;background:var(--green);display:inline-block}
+
+/* ─── TECH PLATFORM ─── */
+.platform-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:20px}
+.platform-card{background:#fff;border:1px solid var(--border);border-radius:var(--radius-lg);padding:28px;position:relative;overflow:hidden}
+.platform-card::before{content:"";position:absolute;top:0;left:0;right:0;height:3px;background:var(--green)}
+.platform-card h3{font-size:17px;font-weight:700;margin-bottom:10px}
+.platform-card p{font-size:14px;color:var(--text2);line-height:1.65;margin-bottom:20px}
+.mini-bars{display:flex;flex-direction:column;gap:8px}
+.mini-bar{height:8px;border-radius:4px;background:var(--green);opacity:.7}
+.tag-cloud{display:flex;flex-wrap:wrap;gap:8px}
+.tag{background:var(--green-light);color:var(--green);border:1px solid #b3ddd0;border-radius:20px;font-size:12px;font-weight:600;padding:4px 12px}
+
+/* ─── HOW IT HELPS ─── */
+.accordion-item{border-bottom:1px solid var(--border)}
+.accordion-q{width:100%;background:none;border:none;font-family:var(--font);font-size:16px;font-weight:600;color:var(--text);padding:18px 0;display:flex;justify-content:space-between;align-items:center;cursor:pointer;text-align:left;gap:1rem}
+.accordion-q:hover{color:var(--green)}
+.accordion-icon{width:28px;height:28px;border-radius:50%;background:var(--green-light);color:var(--green);display:flex;align-items:center;justify-content:center;font-size:16px;flex-shrink:0;transition:transform .3s,background .3s}
+.accordion-item.open .accordion-icon{background:var(--green);color:#fff;transform:rotate(45deg)}
+.accordion-body{display:none;padding:0 0 20px;font-size:14px;color:var(--text2);line-height:1.75}
+.accordion-item.open .accordion-body{display:block}
+.acc-list{margin-top:12px;list-style:none}
+.acc-list li{padding:6px 0;display:flex;align-items:flex-start;gap:10px;font-size:14px;color:var(--text2)}
+.acc-list li::before{content:"→";color:var(--green);font-weight:700;flex-shrink:0}
+
+/* ─── TESTIMONIAL / CTA ─── */
+.cta-band{background:linear-gradient(135deg,#052e1e,#0e5441,#1a7a5e);padding:72px 1.5rem;text-align:center;color:#fff}
+.cta-band h2{font-size:clamp(24px,4vw,40px);font-weight:700;margin-bottom:14px;letter-spacing:-.02em}
+.cta-band p{font-size:16px;color:rgba(255,255,255,.8);max-width:500px;margin:0 auto 32px}
+.rating-row{display:flex;align-items:center;justify-content:center;gap:10px;margin-bottom:28px}
+.stars{color:#fac75a;font-size:18px;letter-spacing:2px}
+.rating-text{font-size:14px;color:rgba(255,255,255,.8)}
+.testimonial-quote{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.15);border-radius:var(--radius-lg);padding:24px 32px;max-width:600px;margin:32px auto 0;font-size:15px;color:rgba(255,255,255,.9);font-style:italic;line-height:1.7}
+.testimonial-author{font-size:13px;color:#9fe8c8;font-style:normal;margin-top:10px;font-weight:600}
+
+/* ─── FAQ ─── */
+.faq-wrap{max-width:760px;margin:0 auto}
+.faq-item{border-bottom:1px solid var(--border)}
+.faq-q{width:100%;background:none;border:none;font-family:var(--font);font-size:15px;font-weight:600;color:var(--text);padding:18px 0;display:flex;justify-content:space-between;align-items:center;cursor:pointer;text-align:left;gap:1rem}
+.faq-q:hover{color:var(--green)}
+.faq-icon{font-size:22px;color:var(--text3);transition:transform .3s;flex-shrink:0}
+.faq-item.open .faq-icon{transform:rotate(45deg);color:var(--green)}
+.faq-body{display:none;padding:0 0 18px;font-size:14px;color:var(--text2);line-height:1.75}
+.faq-item.open .faq-body{display:block}
+
+/* ─── FOOTER ─── */
+footer{background:#0a0a0a;color:#ccc;padding:60px 1.5rem 32px}
+.footer-inner{max-width:1100px;margin:0 auto}
+.footer-top{display:grid;grid-template-columns:2fr 1fr 1fr 1fr 1fr;gap:40px;margin-bottom:48px}
+.footer-logo-block .logo-text{font-size:24px;font-weight:700;color:#fff;margin-bottom:12px}
+.footer-logo-block .logo-text span{color:var(--green-mid)}
+.footer-logo-block p{font-size:13px;color:#888;line-height:1.7;max-width:260px;margin-bottom:20px}
+.footer-col h4{font-size:13px;font-weight:700;color:#fff;margin-bottom:16px;text-transform:uppercase;letter-spacing:.06em}
+.footer-col a{display:block;font-size:13px;color:#888;text-decoration:none;margin-bottom:10px;transition:color .2s}
+.footer-col a:hover{color:var(--green-mid)}
+.footer-bottom{border-top:1px solid #222;padding-top:28px;display:flex;align-items:center;justify-content:space-between;flex-wrap:gap;gap:12px}
+.footer-bottom p{font-size:12px;color:#555}
+.footer-social{display:flex;gap:10px}
+.social-btn{width:34px;height:34px;border-radius:50%;background:#1a1a1a;border:1px solid #333;display:flex;align-items:center;justify-content:center;color:#888;font-size:13px;text-decoration:none;transition:all .2s}
+.social-btn:hover{background:var(--green);color:#fff;border-color:var(--green)}
+.footer-stats{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;background:#111;border-radius:var(--radius-lg);padding:28px;margin-bottom:40px;text-align:center}
+.fs-num{font-size:22px;font-weight:700;color:#fff;margin-bottom:4px}
+.fs-lbl{font-size:11px;color:#555;text-transform:uppercase;letter-spacing:.06em}
+
+/* ─── NOTIFICATION TOAST ─── */
+.toast{position:fixed;bottom:24px;right:24px;background:var(--green);color:#fff;padding:14px 24px;border-radius:var(--radius-lg);font-size:14px;font-weight:600;z-index:9999;transform:translateY(80px);opacity:0;transition:all .35s;box-shadow:0 8px 30px rgba(26,122,94,.4)}
+.toast.show{transform:translateY(0);opacity:1}
+
+/* ─── MODAL ─── */
+.modal-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.55);z-index:9998;align-items:center;justify-content:center;padding:1rem}
+.modal-overlay.open{display:flex}
+.modal{background:#fff;border-radius:var(--radius-lg);padding:36px;max-width:500px;width:100%;position:relative;max-height:90vh;overflow-y:auto}
+.modal-close{position:absolute;top:14px;right:18px;background:none;border:none;font-size:22px;cursor:pointer;color:var(--text3);line-height:1}
+.modal-close:hover{color:var(--text)}
+.modal h2{font-size:22px;font-weight:700;margin-bottom:8px}
+.modal p{font-size:14px;color:var(--text2);margin-bottom:24px}
+.form-group{margin-bottom:16px}
+.form-group label{display:block;font-size:13px;font-weight:600;color:var(--text2);margin-bottom:6px}
+.form-group input,.form-group select,.form-group textarea{width:100%;border:1.5px solid var(--border);border-radius:var(--radius);padding:10px 14px;font-size:14px;font-family:var(--font);transition:border-color .2s;outline:none}
+.form-group input:focus,.form-group select:focus,.form-group textarea:focus{border-color:var(--green)}
+.form-group textarea{resize:vertical;min-height:90px}
+
+/* ─── RESPONSIVE ─── */
+@media(max-width:900px){
+  .hero-stats{grid-template-columns:repeat(2,1fr)}
+  .service-panel{grid-template-columns:1fr}
+  .service-visual{display:none}
+  .footer-top{grid-template-columns:1fr 1fr;gap:24px}
+  .footer-stats{grid-template-columns:repeat(2,1fr)}
+}
+@media(max-width:700px){
+  .nav-links,.nav-actions .btn-outline{display:none}
+  .hamburger{display:flex}
+  .hero-stats{grid-template-columns:repeat(2,1fr)}
+  .cards-grid{grid-template-columns:1fr}
+  .footer-top{grid-template-columns:1fr}
+  .footer-stats{grid-template-columns:1fr 1fr}
+  .footer-bottom{flex-direction:column;text-align:center}
+}
+</style>
+</head>
+<body>
+
+<!-- TOPBAR -->
+<div class="topbar">Revenue Driven for Our Clients: <a href="#results">$10,085,355,239+</a> — See Our Results</div>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-inner">
+    <a href="#" class="logo"><span class="ai">AI</span><span class="dost">Dost</span><span class="ag"> Agency</span></a>
+
+    <div class="nav-links">
+      <div class="nav-item" id="nav-services">
+        <button onclick="toggleNav('nav-services')">Services <span class="arrow">▾</span></button>
+        <div class="dropdown">
+          <a href="#services" onclick="scrollTo('services')">AI Digital Marketing</a>
+          <a href="#services" onclick="setTab(0)">Content Marketing</a>
+          <a href="#services" onclick="setTab(1)">SEO Services</a>
+          <a href="#services" onclick="setTab(2)">GEO / AI Search</a>
+          <a href="#services" onclick="setTab(3)">PPC Advertising</a>
+          <a href="#services" onclick="setTab(4)">Social Media</a>
+          <a href="#services" onclick="setTab(5)">Email Marketing</a>
+        </div>
+      </div>
+      <div class="nav-item" id="nav-solutions">
+        <button onclick="toggleNav('nav-solutions')">Solutions <span class="arrow">▾</span></button>
+        <div class="dropdown">
+          <a href="#how-it-helps">Workflow Automation</a>
+          <a href="#how-it-helps">Customer Communication</a>
+          <a href="#how-it-helps">Targeted Campaigns</a>
+          <a href="#how-it-helps">Campaign Analytics</a>
+        </div>
+      </div>
+      <div class="nav-item" id="nav-tech">
+        <button onclick="toggleNav('nav-tech')">Technology <span class="arrow">▾</span></button>
+        <div class="dropdown">
+          <a href="#platform">RevenueCloudFX</a>
+          <a href="#platform">AI Insights</a>
+          <a href="#platform">Analytics & Reporting</a>
+          <a href="#platform">Marketing Automation</a>
+        </div>
+      </div>
+      <div class="nav-item">
+        <a href="#faq">About</a>
+      </div>
+    </div>
+
+    <div class="nav-actions">
+      <button class="btn btn-outline" onclick="openModal('login-modal')">Client Login</button>
+      <button class="btn btn-green" onclick="openModal('proposal-modal')">Get a Proposal</button>
+    </div>
+
+    <button class="hamburger" onclick="toggleMobileNav()" id="ham">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+  <div class="mobile-nav" id="mobile-nav">
+    <a href="#services">Services</a>
+    <a href="#how-it-helps">Solutions</a>
+    <a href="#platform">Technology</a>
+    <a href="#faq">About</a>
+    <button onclick="openModal('login-modal')">Client Login</button>
+    <button onclick="openModal('proposal-modal')" style="color:var(--green)">Get a Proposal →</button>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="home">
+  <div class="hero-inner">
+    <div class="hero-badge">🤖 Pakistan's #1 AI Marketing Agency</div>
+    <h1>AI Solutions for Businesses:<br>Turning AI into ROI</h1>
+    <p>More than 80% of marketers integrate AI into their digital marketing activities. If you're not leveraging AI efficiently, your business is falling behind in 2025. See how our team helps your company thrive with AI solutions.</p>
+    <div class="hero-btns">
+      <button class="btn btn-white btn-lg" onclick="openModal('proposal-modal')">Request My Custom Strategy</button>
+      <button class="btn btn-ghost btn-lg" onclick="document.getElementById('services').scrollIntoView({behavior:'smooth'})">View Our Services</button>
+    </div>
+    <div class="hero-stats">
+      <div class="hero-stat"><div class="hero-stat-num">$10B+</div><div class="hero-stat-lbl">Revenue Driven for Clients</div></div>
+      <div class="hero-stat"><div class="hero-stat-num">8+</div><div class="hero-stat-lbl">Years Investing in AI</div></div>
+      <div class="hero-stat"><div class="hero-stat-num">750</div><div class="hero-stat-lbl">Experts on Staff</div></div>
+      <div class="hero-stat"><div class="hero-stat-num">200+</div><div class="hero-stat-lbl">Industries Served</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- LOGOS STRIP -->
+<div class="logos-strip">
+  <div class="logos-inner">
+    <span class="logos-label">Leveraging:</span>
+    <span class="logo-pill">ChatGPT</span>
+    <span class="logo-pill">Google Gemini</span>
+    <span class="logo-pill">Claude AI</span>
+    <span class="logo-pill">Perplexity</span>
+    <span class="logo-pill">Microsoft Copilot</span>
+    <span class="logo-pill">Meta AI</span>
+    <span class="logo-pill">xAI Grok</span>
+    <span class="logo-pill">Apple Intelligence</span>
+  </div>
+</div>
+
+<!-- WHY AIDOST -->
+<section class="bg2" id="why">
+  <div class="section-inner">
+    <div class="section-tag">Why AIDost Agency</div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:center;margin-bottom:48px">
+      <div>
+        <div class="section-title">AI Solutions Tailored to Your Business Goals</div>
+        <div class="section-sub" style="margin-bottom:24px">Thanks to the AI experts at AIDost Agency, we work directly with your business to streamline processes, connect your data, and drive results faster.</div>
+        <button class="btn btn-green" onclick="openModal('proposal-modal')">Connect With Our Team →</button>
+      </div>
+      <div style="background:#fff;border:1px solid var(--border);border-radius:var(--radius-lg);padding:28px">
+        <div style="font-size:13px;font-weight:700;color:var(--text2);margin-bottom:20px">AIDost Agency — Investing in AI for 8+ Years</div>
+        <div style="display:flex;flex-direction:column;gap:14px">
+          <div><div style="display:flex;justify-content:space-between;font-size:13px;margin-bottom:6px"><span>AI Integration</span><span style="color:var(--green);font-weight:700">98%</span></div><div style="height:8px;background:var(--bg2);border-radius:4px;overflow:hidden"><div style="height:100%;width:98%;background:var(--green);border-radius:4px"></div></div></div>
+          <div><div style="display:flex;justify-content:space-between;font-size:13px;margin-bottom:6px"><span>Client Satisfaction</span><span style="color:var(--green);font-weight:700">96%</span></div><div style="height:8px;background:var(--bg2);border-radius:4px;overflow:hidden"><div style="height:100%;width:96%;background:var(--green);border-radius:4px"></div></div></div>
+          <div><div style="display:flex;justify-content:space-between;font-size:13px;margin-bottom:6px"><span>Revenue Growth</span><span style="color:var(--green);font-weight:700">89%</span></div><div style="height:8px;background:var(--bg2);border-radius:4px;overflow:hidden"><div style="height:100%;width:89%;background:var(--green);border-radius:4px"></div></div></div>
+          <div><div style="display:flex;justify-content:space-between;font-size:13px;margin-bottom:6px"><span>Campaign ROI</span><span style="color:var(--green);font-weight:700">94%</span></div><div style="height:8px;background:var(--bg2);border-radius:4px;overflow:hidden"><div style="height:100%;width:94%;background:var(--green);border-radius:4px"></div></div></div>
+        </div>
+      </div>
+    </div>
+    <div class="cards-grid">
+      <div class="card"><div class="card-icon">📊</div><h3>Make Better Business Decisions</h3><p>Our team consults on building an AI-powered tech stack so you get faster and better insights to fuel your decision making — from analysis to predictions.</p></div>
+      <div class="card"><div class="card-icon">⚡</div><h3>Automate Time-Consuming Tasks</h3><p>We leverage Zapier, n8n, Cursor, TeamAI, Claude Code, and many more. Save hours every week by automating tasks with AI.</p></div>
+      <div class="card"><div class="card-icon">🚀</div><h3>Move Faster Than Competitors</h3><p>Our AI experts help you understand how to use AI to scale your business faster than your competitors with automated workflows and intelligent systems.</p></div>
+      <div class="card"><div class="card-icon">💰</div><h3>Drive Marketing Revenue</h3><p>AI-powered digital marketing services are the core of what we do. OmniSEO® and GEO strategies keep your business at the forefront of AI's impact on search.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES TABS -->
+<section id="services">
+  <div class="section-inner">
+    <div class="section-tag">Our Services</div>
+    <div class="section-title">AI Solutions to Maximize Your Marketing Results</div>
+    <div class="section-sub">We integrate AI solutions into marketing for businesses ethically and effectively — driving real results without shortcuts.</div>
+    <div class="tabs-wrap" id="tabs-wrap"></div>
+    <div id="service-panel"></div>
+  </div>
+</section>
+
+<!-- PLATFORM -->
+<section class="bg2" id="platform">
+  <div class="section-inner">
+    <div class="section-tag">Our Platform</div>
+    <div class="section-title">Technology with Built-in AI Solutions</div>
+    <div class="section-sub">AIDost Agency has invested $50M+ in technology over 30 years. Our tech platform has had AI baked in since 2018 when machine learning took off.</div>
+    <div class="platform-grid">
+      <div class="platform-card">
+        <h3>AI for Strategic Trends & Insights</h3>
+        <p>We use aggregate data across hundreds of client projects to identify trends and inform strategic insights backed by billions of data points and proven results across 200+ industries.</p>
+        <div class="mini-bars">
+          <div class="mini-bar" style="width:88%"></div>
+          <div class="mini-bar" style="width:72%;opacity:.5"></div>
+          <div class="mini-bar" style="width:95%;opacity:.8"></div>
+          <div class="mini-bar" style="width:60%;opacity:.4"></div>
+        </div>
+      </div>
+      <div class="platform-card">
+        <h3>AI for Content Marketing</h3>
+        <p>Our AI-powered technology identifies optimization opportunities, understands search intent for better content generation, and predicts content impact before you publish.</p>
+        <div class="tag-cloud" style="margin-top:16px">
+          <span class="tag">✓ Optimization</span>
+          <span class="tag">✓ Search Intent</span>
+          <span class="tag">✓ Performance</span>
+          <span class="tag">✓ Predictions</span>
+          <span class="tag">✓ Competitor Analysis</span>
+        </div>
+      </div>
+      <div class="platform-card">
+        <h3>Analytics & Reporting</h3>
+        <p>Never question performance. Lead, CPL, and ROI reporting by acquisition channel. Generative AI visibility tracking. Predictive analytics and multi-touch journey dashboard.</p>
+        <div class="mini-bars" style="margin-top:16px">
+          <div class="mini-bar" style="width:75%;opacity:.9"></div>
+          <div class="mini-bar" style="width:90%"></div>
+          <div class="mini-bar" style="width:55%;opacity:.6"></div>
+          <div class="mini-bar" style="width:80%;opacity:.75"></div>
+        </div>
+      </div>
+      <div class="platform-card">
+        <h3>AI for Marketing Automation</h3>
+        <p>Train ad networks to improve lead quality. Get a fuller picture of ROI with connected data. Score leads, analyze phone conversations, and automate local listing management.</p>
+        <div class="tag-cloud" style="margin-top:16px">
+          <span class="tag">✓ PPC Enablement</span>
+          <span class="tag">✓ Lead Scoring</span>
+          <span class="tag">✓ Call Analysis</span>
+          <span class="tag">✓ Local Listings</span>
+        </div>
+      </div>
+    </div>
+    <div style="text-align:center;margin-top:36px">
+      <button class="btn btn-green btn-lg" onclick="openModal('proposal-modal')">Discover RevenueCloudFX →</button>
+    </div>
+  </div>
+</section>
+
+<!-- HOW IT HELPS -->
+<section id="how-it-helps">
+  <div class="section-inner">
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:start">
+      <div>
+        <div class="section-tag">How AI Helps Your Business</div>
+        <div class="section-title">AI Solutions Can Transform Your Business</div>
+        <div class="section-sub">From workflow management to targeted marketing campaigns — see exactly how AI technology solutions drive business growth.</div>
+        <button class="btn btn-green" onclick="openModal('proposal-modal')">Get My Free Proposal →</button>
+      </div>
+      <div id="accordion-wrap"></div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA BAND -->
+<div class="cta-band" id="results">
+  <div class="rating-row">
+    <span class="stars">★★★★★</span>
+    <span class="rating-text">4.9/5 based on 830+ third-party reviews</span>
+  </div>
+  <h2>Discover the Difference in Working with<br>AIDost Agency</h2>
+  <p>Trusted for transparency, communication, and results. Join thousands of businesses driving real revenue with AI.</p>
+  <button class="btn btn-white btn-lg" onclick="openModal('proposal-modal')">Get My Free Proposal</button>
+  <div class="testimonial-quote">
+    "With the rise of AI, the AIDost Agency team has helped us stay above the curve and grow what matters most… revenue."
+    <div class="testimonial-author">— Solar Manufacturing Company</div>
+  </div>
+</div>
+
+<!-- FAQ -->
+<section class="bg2" id="faq">
+  <div class="section-inner">
+    <div style="text-align:center;margin-bottom:48px">
+      <div class="section-tag" style="justify-content:center;display:flex">FAQs</div>
+      <div class="section-title">Frequently Asked Questions about AI Solutions</div>
+    </div>
+    <div class="faq-wrap" id="faq-wrap"></div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-stats">
+      <div><div class="fs-num">24,859,684+</div><div class="fs-lbl">Leads Driven for Clients</div></div>
+      <div><div class="fs-num">$10B+</div><div class="fs-lbl">Revenue Driven for Clients</div></div>
+      <div><div class="fs-num">3,212,407</div><div class="fs-lbl">Hours of Expertise</div></div>
+      <div><div class="fs-num">750</div><div class="fs-lbl">Experts on Staff</div></div>
+    </div>
+    <div class="footer-top">
+      <div class="footer-logo-block">
+        <div class="logo-text"><span>AIDost</span> Agency</div>
+        <p>AI-powered digital marketing that drives real, measurable revenue for businesses in every industry.</p>
+        <button class="btn btn-green" onclick="openModal('proposal-modal')">Send Me a Proposal →</button>
+      </div>
+      <div class="footer-col">
+        <h4>Services</h4>
+        <a href="#services" onclick="setTab(0)">Content Marketing</a>
+        <a href="#services" onclick="setTab(1)">SEO Services</a>
+        <a href="#services" onclick="setTab(2)">GEO / AI Search</a>
+        <a href="#services" onclick="setTab(3)">PPC Advertising</a>
+        <a href="#services" onclick="setTab(4)">Social Media</a>
+        <a href="#services" onclick="setTab(5)">Email Marketing</a>
+      </div>
+      <div class="footer-col">
+        <h4>Solutions</h4>
+        <a href="#how-it-helps">Workflow Automation</a>
+        <a href="#how-it-helps">Customer Communication</a>
+        <a href="#how-it-helps">Targeted Campaigns</a>
+        <a href="#how-it-helps">Campaign Analytics</a>
+        <a href="#platform">RevenueCloudFX</a>
+      </div>
+      <div class="footer-col">
+        <h4>Company</h4>
+        <a href="#why">About Us</a>
+        <a href="#results">Client Results</a>
+        <a href="#faq">FAQs</a>
+        <a href="#" onclick="openModal('proposal-modal')">Get a Proposal</a>
+        <a href="#" onclick="openModal('login-modal')">Client Login</a>
+      </div>
+      <div class="footer-col">
+        <h4>Pricing</h4>
+        <a href="#" onclick="showToast('Pricing page coming soon!')">SEO Pricing</a>
+        <a href="#" onclick="showToast('Pricing page coming soon!')">PPC Pricing</a>
+        <a href="#" onclick="showToast('Pricing page coming soon!')">Social Media</a>
+        <a href="#" onclick="showToast('Pricing page coming soon!')">Web Design</a>
+        <a href="#" onclick="showToast('Pricing page coming soon!')">GEO Pricing</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2025 AIDost Agency. All Rights Reserved. | <a href="#" style="color:#555;text-decoration:none">Privacy Policy</a> | <a href="#" style="color:#555;text-decoration:none">Terms of Use</a></p>
+      <div class="footer-social">
+        <a class="social-btn" href="#" onclick="showToast('Opening Facebook...')">f</a>
+        <a class="social-btn" href="#" onclick="showToast('Opening Twitter/X...')">X</a>
+        <a class="social-btn" href="#" onclick="showToast('Opening LinkedIn...')">in</a>
+        <a class="social-btn" href="#" onclick="showToast('Opening YouTube...')">▶</a>
+        <a class="social-btn" href="#" onclick="showToast('Opening Instagram...')">ig</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- TOAST -->
+<div class="toast" id="toast"></div>
+
+<!-- PROPOSAL MODAL -->
+<div class="modal-overlay" id="proposal-modal">
+  <div class="modal">
+    <button class="modal-close" onclick="closeModal('proposal-modal')">×</button>
+    <h2>Get My Free Proposal</h2>
+    <p>Tell us about your business and we'll craft a custom AI marketing strategy for you.</p>
+    <div class="form-group"><label>Full Name *</label><input type="text" placeholder="John Smith"></div>
+    <div class="form-group"><label>Business Email *</label><input type="email" placeholder="john@company.com"></div>
+    <div class="form-group"><label>Company Name</label><input type="text" placeholder="Acme Corp"></div>
+    <div class="form-group"><label>Service Interested In</label>
+      <select><option>AI Digital Marketing</option><option>SEO Services</option><option>GEO / AI Search</option><option>PPC Advertising</option><option>Social Media</option><option>Email Marketing</option><option>Full AI Strategy</option></select>
+    </div>
+    <div class="form-group"><label>Tell Us About Your Goals</label><textarea placeholder="What are you hoping to achieve with AI marketing?"></textarea></div>
+    <button class="btn btn-green" style="width:100%;justify-content:center;padding:14px" onclick="submitProposal()">Send My Proposal Request →</button>
+  </div>
+</div>
+
+<!-- LOGIN MODAL -->
+<div class="modal-overlay" id="login-modal">
+  <div class="modal">
+    <button class="modal-close" onclick="closeModal('login-modal')">×</button>
+    <h2>Client Login</h2>
+    <p>Access your AIDost Agency dashboard and campaign reports.</p>
+    <div class="form-group"><label>Email Address</label><input type="email" placeholder="you@company.com"></div>
+    <div class="form-group"><label>Password</label><input type="password" placeholder="••••••••"></div>
+    <button class="btn btn-green" style="width:100%;justify-content:center;padding:14px;margin-bottom:12px" onclick="submitLogin()">Sign In →</button>
+    <p style="text-align:center;font-size:13px;color:var(--text3)">Don't have an account? <a href="#" style="color:var(--green)" onclick="closeModal('login-modal');openModal('proposal-modal')">Get a Proposal</a></p>
+  </div>
+</div>
+
+<script>
+/* ─── DATA ─── */
+const services=[
+  {name:"Content Marketing",icon:"✍️",title:"AI Solutions for Content Marketing",desc:"Many businesses have misused AI for content creation. At AIDost Agency, we use AI to enrich and inform the content research process — ensuring every piece is human-written, AI-enhanced, and fully optimized.",list:["AI research for deeper, more informed content outlines","AI detection checks for all copywriter-produced copy","AI content analysis to identify optimization opportunities","AI content performance monitoring and projections","AI research to find gaps in your content strategy"],bars:[82,74,90,67,78]},
+  {name:"SEO",icon:"🔍",title:"AI Solutions for SEO",desc:"SEO is one of the channels most heavily impacted by AI. Businesses are seeing major drops in website traffic due to AI Overviews and changing search behavior. Our AI consulting helps you adapt and stay ahead.",list:["Adapt to algorithm changes to continue ranking highly","Identify quick wins to improve content ranking","Increase website traffic based on site edits","Find link-building opportunities","Monitor and improve AI Overview appearances"],bars:[88,71,93,65,80]},
+  {name:"GEO",icon:"🤖",title:"AI Solutions for Generative Engine Optimization",desc:"Today, ranking in Google isn't enough. With generative AI traffic growing exponentially, your brand must also be visible in ChatGPT, Perplexity, AI Overviews, and other AI experiences.",list:["Audit how AI models interpret your website content","Data-backed GEO strategies from our platform","Performance tracking and AI visibility analysis","Brand perception monitoring on AI platforms","Optimization for LLMs like ChatGPT and Gemini"],bars:[76,85,70,88,73]},
+  {name:"PPC",icon:"📣",title:"AI Consulting for PPC Advertising",desc:"PPC advertising offers one of the best marketing strategies to get more real estate in search results. AI solutions help you find perfect keywords, win auctions, and create landing pages that convert.",list:["Forecast which keywords will be most successful","Use A/B test results to craft the best possible ads","Automate bidding for optimal performance","Optimize landing pages to encourage conversions","Predict ad performance before spending budget"],bars:[79,86,68,92,77]},
+  {name:"Social Media",icon:"👍",title:"AI Services for Social Media Marketing",desc:"Social media marketing is a great way to build your brand online. AI services help you streamline the many moving parts and maintain a consistent, effective presence across all platforms.",list:["Create a 24/7 online presence with AI chatbots","Manage automated bidding for social media ads","Target audiences based on user behavior and social usage","Determine which posts perform best based on engagement","Automate content scheduling and optimization"],bars:[84,69,91,73,82]},
+  {name:"Email Marketing",icon:"✉️",title:"AI Consulting for Email Marketing",desc:"Email marketing reaches your most qualified audience right in their inbox. AI consulting ensures you send the right message, to the right person, at exactly the right time to maximize conversions.",list:["Suggest subject lines that will convert based on past success","Determine the ideal time to send emails for optimal open rates","Personalize emails to increase recipient interest","Create automated content based on previous campaigns","Customize promos to specific customer segments"],bars:[86,77,95,71,83]}
+];
+
+const accordions=[
+  {q:"AI solutions can help you manage your workflow",a:"From payroll to inventory, AI solutions help you stay on top of your business. Budget management, inventory tracking, supply chain monitoring, and future buying predictions — all automated and intelligent.",list:["Automate payroll and budget management","Predict future inventory needs","Detect supply chain anomalies in real-time","Generate financial forecasts automatically"]},
+  {q:"AI solutions can help you communicate with customers",a:"With AI services, you can be available to customers at all hours — even after closing, on holidays, and weekends. Users love communicating without picking up the phone — AI chatbots handle questions instantly.",list:["24/7 AI chatbot for customer questions","Instant response to pre-sale inquiries","Train bots on your products and services","Increase conversions by being always-on"]},
+  {q:"AI solutions can help you craft targeted marketing campaigns",a:"AI consulting services help you reach the most qualified audience at the right time. From keyword research to optimal posting times, AI takes the guesswork out of marketing.",list:["Determine target keywords with AI precision","Find the best time of day to reach your audience","Personalize campaigns for different customer segments","Predict campaign success before launch"]},
+  {q:"AI services can help you analyze previous marketing campaigns",a:"Without analyzing previous campaigns, you can't make progress. AI technology solutions import your campaign data and identify what worked, what didn't, and exactly how to improve.",list:["Identify your most successful campaigns and why","Recreate winning strategies automatically","Eliminate underperforming campaign patterns","Save time and budget on future campaigns"]}
+];
+
+const faqs=[
+  {q:"What is AI?",a:"Artificial intelligence (AI) is an all-encompassing term that means computers can perform tasks that typically require human intelligence — like reasoning, learning, problem-solving, and perception. It is the foundation for all of our AI solutions for businesses."},
+  {q:"What is machine learning?",a:"Machine learning is a subset of artificial intelligence. It is the way that you can train computers to perform human tasks — by feeding them data and allowing them to learn patterns without being explicitly programmed."},
+  {q:"What is deep learning?",a:"Deep learning is a sub-category of machine learning with even more capabilities. It can essentially make decisions on its own without much human interaction, and powers many of the AI features in our platform."},
+  {q:"What are AI solutions?",a:"AI solutions use AI algorithms and technologies to automate tasks, analyze data, and learn from data to help humans and businesses solve specific problems. For example, AI solutions for marketing can personalize your customers' online experience, potentially increasing sales and fostering customer loyalty."},
+  {q:"Why should I hire an AI solutions company?",a:"AI is an extremely precise and tedious process that requires a professional to work properly. You could find yourself spending hours trying to figure out your AI campaign — when the best option is simply to hire AIDost Agency to do it right."},
+  {q:"How long does it take to see results from AI marketing?",a:"Most clients begin seeing measurable improvements within 60-90 days of launch. Full AI integration typically delivers significant ROI within 6 months. Our team tracks results from day one and provides monthly performance reports."}
+];
+
+/* ─── RENDER TABS ─── */
+function renderTabs(){
+  const wrap=document.getElementById('tabs-wrap');
+  wrap.innerHTML=services.map((s,i)=>`<button class="tab${i===0?' active':''}" onclick="setTab(${i})">${s.icon} ${s.name}</button>`).join('');
+}
+
+function setTab(idx){
+  document.querySelectorAll('.tab').forEach((t,i)=>t.classList.toggle('active',i===idx));
+  const s=services[idx];
+  document.getElementById('service-panel').innerHTML=`
+    <div class="service-panel">
+      <div class="service-text">
+        <h3>${s.title}</h3>
+        <p>${s.desc}</p>
+        <ul class="service-list">${s.list.map(l=>`<li>${l}</li>`).join('')}</ul>
+        <button class="btn btn-green" onclick="openModal('proposal-modal')">Get a Free Strategy for ${s.name} →</button>
+      </div>
+      <div class="service-visual">
+        <div class="visual-title"><span class="green-dot"></span> ${s.name} Performance Dashboard</div>
+        ${s.list.map((l,i)=>`<div class="bar-row"><div class="bar-label" style="font-size:11px;overflow:hidden;white-space:nowrap;text-overflow:ellipsis">${l.split(' ').slice(0,3).join(' ')}</div><div style="flex:1"><div class="bar-fill" style="width:${s.bars[i]}%"></div></div><div class="bar-pct">${s.bars[i]}%</div></div>`).join('')}
+      </div>
+    </div>`;
+  document.getElementById('services').scrollIntoView({behavior:'smooth',block:'start'});
+}
+
+/* ─── RENDER ACCORDION ─── */
+function renderAccordion(){
+  const wrap=document.getElementById('accordion-wrap');
+  wrap.innerHTML=accordions.map((a,i)=>`
+    <div class="accordion-item" id="acc-${i}">
+      <button class="accordion-q" onclick="toggleAcc(${i})">${a.q}<span class="accordion-icon">+</span></button>
+      <div class="accordion-body">
+        <p>${a.a}</p>
+        <ul class="acc-list">${a.list.map(l=>`<li>${l}</li>`).join('')}</ul>
+      </div>
+    </div>`).join('');
+}
+
+function toggleAcc(i){
+  const el=document.getElementById('acc-'+i);
+  el.classList.toggle('open');
+}
+
+/* ─── RENDER FAQ ─── */
+function renderFaq(){
+  const wrap=document.getElementById('faq-wrap');
+  wrap.innerHTML=faqs.map((f,i)=>`
+    <div class="faq-item" id="faq-${i}">
+      <button class="faq-q" onclick="toggleFaq(${i})">${f.q}<span class="faq-icon">+</span></button>
+      <div class="faq-body">${f.a}</div>
+    </div>`).join('');
+}
+
+function toggleFaq(i){
+  const el=document.getElementById('faq-'+i);
+  el.classList.toggle('open');
+  el.querySelector('.faq-icon').textContent=el.classList.contains('open')? '×':'+';
+}
+
+/* ─── NAV ─── */
+function toggleNav(id){
+  document.querySelectorAll('.nav-item').forEach(el=>{
+    if(el.id!==id) el.classList.remove('open');
+  });
+  document.getElementById(id)?.classList.toggle('open');
+}
+
+document.addEventListener('click',function(e){
+  if(!e.target.closest('.nav-item')) document.querySelectorAll('.nav-item').forEach(el=>el.classList.remove('open'));
+});
+
+function toggleMobileNav(){
+  const mn=document.getElementById('mobile-nav');
+  mn.style.display=mn.style.display==='block'?'none':'block';
+}
+
+/* ─── MODAL ─── */
+function openModal(id){
+  document.getElementById(id).classList.add('open');
+  document.querySelectorAll('.nav-item').forEach(el=>el.classList.remove('open'));
+}
+function closeModal(id){document.getElementById(id).classList.remove('open');}
+document.querySelectorAll('.modal-overlay').forEach(el=>el.addEventListener('click',function(e){if(e.target===this)this.classList.remove('open');}));
+
+function submitProposal(){
+  closeModal('proposal-modal');
+  showToast('✓ Proposal request sent! We\'ll be in touch within 24 hours.');
+}
+function submitLogin(){
+  closeModal('login-modal');
+  showToast('✓ Logged in successfully! Redirecting to dashboard...');
+}
+
+/* ─── TOAST ─── */
+function showToast(msg){
+  const t=document.getElementById('toast');
+  t.textContent=msg;
+  t.classList.add('show');
+  setTimeout(()=>t.classList.remove('show'),3200);
+}
+
+/* ─── INIT ─── */
+renderTabs();
+setTab(0);
+renderAccordion();
+renderFaq();
+</script>
+</body>
+</html>
